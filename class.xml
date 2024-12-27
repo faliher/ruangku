@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<UML:Model xmi.version="1.2" xmlns:UML="org.omg.xmi.namespace.UML">
+  <UML:Package name="db_simabar">
+    <!-- Tabel Admin -->
+    <UML:Class name="Admin">
+      <UML:Attribute name="id_admin" type="varchar"/>
+      <UML:Attribute name="username" type="varchar"/>
+      <UML:Attribute name="password" type="varchar"/>
+      <UML:Attribute name="nama_admin" type="varchar"/>
+      <UML:Attribute name="no_wa" type="varchar"/>
+      <UML:Attribute name="foto_admin" type="varchar"/>
+    </UML:Class>
+
+    <!-- Tabel Data Barang -->
+    <UML:Class name="DataBarang">
+      <UML:Attribute name="id_barang_pemda" type="varchar"/>
+      <UML:Attribute name="kode_barang" type="varchar"/>
+      <UML:Attribute name="nama_barang" type="varchar"/>
+      <UML:Attribute name="no_regristrasi" type="varchar"/>
+      <UML:Attribute name="kode_pemilik" type="varchar"/>
+      <UML:Attribute name="id_ruang_asal" type="varchar"/>
+      <UML:Attribute name="nama_ruang_asal" type="varchar"/>
+      <UML:Attribute name="tgl_pembelian" type="date"/>
+      <UML:Attribute name="merk" type="varchar"/>
+      <UML:Attribute name="type" type="varchar"/>
+      <UML:Attribute name="kategori" type="varchar"/>
+      <UML:Attribute name="kondisi_barang" type="varchar"/>
+      <UML:Attribute name="harga_total" type="decimal"/>
+    </UML:Class>
+
+    <!-- Tabel Lokasi -->
+    <UML:Class name="Lokasi">
+      <UML:Attribute name="id_lokasi" type="varchar"/>
+      <UML:Attribute name="nama_lokasi" type="varchar"/>
+      <UML:Attribute name="bid_lokasi" type="varchar"/>
+      <UML:Attribute name="tempat_lokasi" type="varchar"/>
+    </UML:Class>
+
+    <!-- Tabel Pengguna -->
+    <UML:Class name="Pengguna">
+      <UML:Attribute name="id_pengguna" type="varchar"/>
+      <UML:Attribute name="nama_pengguna" type="varchar"/>
+      <UML:Attribute name="email" type="varchar"/>
+      <UML:Attribute name="no_telp" type="varchar"/>
+    </UML:Class>
+
+    <!-- Tabel Transaksi -->
+    <UML:Class name="Transaksi">
+      <UML:Attribute name="id_transaksi" type="varchar"/>
+      <UML:Attribute name="id_barang" type="varchar"/>
+      <UML:Attribute name="id_pengguna" type="varchar"/>
+      <UML:Attribute name="tanggal" type="date"/>
+      <UML:Attribute name="jumlah" type="int"/>
+      <UML:Attribute name="total_harga" type="decimal"/>
+    </UML:Class>
+
+    <!-- Relasi antara Admin dan DataBarang -->
+    <UML:Association name="Admin-DataBarang">
+      <UML:AssociationEnd type="Admin" role="Admin" multiplicity="1"/>
+      <UML:AssociationEnd type="DataBarang" role="DataBarang" multiplicity="*"/>
+    </UML:Association>
+
+    <!-- Relasi antara DataBarang dan Lokasi -->
+    <UML:Association name="DataBarang-Lokasi">
+      <UML:AssociationEnd type="DataBarang" role="DataBarang" multiplicity="*"/>
+      <UML:AssociationEnd type="Lokasi" role="Lokasi" multiplicity="1"/>
+    </UML:Association>
+
+    <!-- Relasi antara DataBarang dan Transaksi -->
+    <UML:Association name="DataBarang-Transaksi">
+      <UML:AssociationEnd type="DataBarang" role="DataBarang" multiplicity="1"/>
+      <UML:AssociationEnd type="Transaksi" role="Transaksi" multiplicity="*"/>
+    </UML:Association>
+
+    <!-- Relasi antara Pengguna dan Transaksi -->
+    <UML:Association name="Pengguna-Transaksi">
+      <UML:AssociationEnd type="Pengguna" role="Pengguna" multiplicity="1"/>
+      <UML:AssociationEnd type="Transaksi" role="Transaksi" multiplicity="*"/>
+    </UML:Association>
+  </UML:Package>
+</UML:Model>
